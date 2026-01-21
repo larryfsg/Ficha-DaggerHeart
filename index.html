@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha DaggerHeart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+
+<body>
+
+    <img alt="Imagem de uma paisagem de fantasia" src="header1.jpg">
+
+    <br><br>
+
+    <!--CABEÇALHO DO PERSONAGEM-->
+    <div class="inicio">
+        <div>
+            <p>NOME:  </p>
+            <input type="text" placeholder="Nome">
+        </div>
+
+        <div>
+            <p>PRONOMES:  </p>
+            <input type="text" placeholder="Pronomes">
+        </div>
+
+        <div>
+            <p>HERANÇA:  </p>
+            <input type="text" placeholder="Herança">
+        </div>
+
+        <div>
+            <p>SUBCLASSES:  </p>
+            <input type="text" placeholder="Subclasses">
+        </div>
+
+        <div class="nivel">
+            <p>LEVEL:  </p>
+            <input type="number">
+        </div>
+    </div>
+
+    <br> <br>
+
+    <!--ATRIBUTOS-->
+    <div class="atributos">
+        <div>
+            <p>EVASÃO  </p>
+            <input type="number" min="0" placeholder="0">
+        </div>
+
+        <div class="armor">
+            <div>
+                <p>ARMADURA  </p>
+                <input type="number" min="0" placeholder="0">
+            </div>
+
+            <div class="check">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+            </div>
+        </div>
+
+        
+
+        <div>
+            <p>AGI  </p>
+            <input type="number" placeholder="0">
+        </div>
+
+        <div>
+            <p>FOR  </p>
+            <input type="number" placeholder="0">
+        </div>
+
+        <div>
+            <p>FIN  </p>
+            <input type="number" placeholder="0">
+        </div>
+
+        <div>
+            <p>INS  </p>
+            <input type="number" placeholder="0">
+        </div>
+
+        <div>
+            <p>PRE  </p>
+            <input type="number" placeholder="0">
+        </div>
+
+        <div>
+            <p>CON  </p>
+            <input type="number" placeholder="0">
+        </div>
+
+    </div>
+
+    <br> <br>
+
+    <!--DIV COM AS DUAS COLUNAS E O RESTO DAS COISAS-->
+    <div class="main">
+
+        <!--ESQUERDA-->
+        <div class="esqdir">
+
+            
+
+            <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px;">
+
+                <h2>SAÚDE</h2> <hr>
+
+                <p style="text-align: center;">VIDA MÁXIMA:
+                    <input type="number">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                </p>
+                
+            </br>
+
+            <p style="text-align: center;">STRESS MÁXIMO:
+                    <input type="number">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                </p>
+                
+            </br>
+                
+                <div class="dano">
+                        
+                            <p style="max-width: 30%;">MENOR
+                            <input type="number" style="max-width: 15%;"> </p>
+                        
+                        
+                            <p style="max-width: 30%;">MAIOR
+                            <input type="number" style="max-width: 15%;"> </p>
+                        
+                        
+                            <p style="max-width: 30%;">SEVERO
+                            <input type="number" style="max-width: 15%;"> </p>
+                        
+                </div>
+            </div>
+
+            <BR>
+                <br>
+
+
+            <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px; text-align: center;">
+                <h2>ESPERANÇA</h2> <hr>
+                <div class="checkesp">
+
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox"> 
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+
+                </div>        
+            
+
+            <br>
+            
+            <textarea placeholder="Hope Feature" style="min-height: 50px; min-width: 100%; max-width: fit-content;"></textarea>
+
+            </div>
+
+            <br>
+            <br>
+
+            <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px;">
+                <h2>EXPERIÊNCIAS</h2> <hr>
+                
+                <input type="text" style="min-width: 99%;"> <br>
+                <input type="text" style="min-width: 99%;"> <br>
+                <input type="text" style="min-width: 99%;"> <br>
+                <input type="text" style="min-width: 99%;"> <br>
+                <input type="text" style="min-width: 99%;"> <br>
+
+                
+                
+            
+            </div>
+
+            <br>
+            <br>
+
+            <div style="text-align: center; border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px;"">
+            <h2>OURO</h2> <hr>
+            <p>PUNHADOS
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+            </p>
+
+            <p>SACOS
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+            </p>
+
+            <p>BAÚS
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+                <input type="checkbox">
+            </p>
+            </div>
+
+            <br>
+            <br>
+
+            <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px;text-align: center;">
+                <h2>CLASS FEATURE</h2> <hr>
+                
+                <textarea style="min-height: 60px; min-width: 100%; max-width:fit-content;"></textarea>
+            </div>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        <!--DIREITA-->
+        <div class="esqdir">
+            <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px; text-align: center;">
+                <h2>ARMAS ATIVAS</h2>
+                <hr>
+                <p style="text-align: start;">PROFICIÊNCIA 
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                </p>
+
+                
+                <br>
+                
+                <div>
+                    <p>PRIMÁRIA</p>
+                    <input type="text" placeholder="Nome" style="max-width: 400px;">
+                    <input type="text" placeholder="Alcance">
+                    <input type="text" placeholder="Dado e Tipo">
+                    <br>
+                    <br>
+                    <textarea style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
+
+
+                </div>
+
+            
+            </br>
+
+                <div>
+                    <p>SECUNDÁRIA</p>
+                    <input type="text" placeholder="Nome" style="max-width: 400px;">
+                    <input type="text" placeholder="Alcance">
+                    <input type="text" placeholder="Dado e Tipo">
+                    <br>
+                    <br>
+                    <textarea style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px; text-align: center;">
+                <h2>ARMADURA ATIVA</h2> <hr>
+                <input type="text" placeholder="Nome" style="max-width: 400px;">
+                <input type="text" placeholder="Limite">
+                <input type="text" placeholder="Pontos">
+                <br>
+                <br>
+                <textarea style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
+
+
+            </div>
+
+
+            <br>
+
+            <div style="border: 2px solid rgba(136, 136, 136, 0.808);
+            border-radius: 10px; padding: 7px; text-align: center;">
+                <h2>INVENTÁRIO</h2> <hr>
+                
+                <textarea style="min-width: 99%; max-width: 99%; min-height: 200px;"></textarea>
+
+                <br>
+                <br>
+
+                <div style="border: 2px solid rgba(136, 136, 136, 0.808);
+            border-radius: 10px; padding: 7px; text-align: center;">
+                    <p>ARMA DO INVENTÁRIO</p>
+                    <input type="text" placeholder="Nome" style="max-width: 400px;">
+                    <input type="text" placeholder="Alcance">
+                    <input type="text" placeholder="Dado e Tipo">
+                    <br>
+                    <br>
+                    <textarea style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
+
+
+                </div>
+
+                <br>
+
+                <div style="border: 2px solid rgba(136, 136, 136, 0.808);
+            border-radius: 10px; padding: 7px; text-align: center;">
+                    <p>ARMA DO INVENTÁRIO</p>
+                    <input type="text" placeholder="Nome" style="max-width: 400px;">
+                    <input type="text" placeholder="Alcance">
+                    <input type="text" placeholder="Dado e Tipo">
+                    <br>
+                    <br>
+                    <textarea style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <div>
+            
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+</html>

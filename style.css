@@ -1,0 +1,211 @@
+body{
+    background-color: rgb(18, 20, 26);
+}
+
+input[type="checkbox"] {
+  accent-color: rgb(200, 170, 90);
+  width: 15px;
+  height: 15px;
+}
+
+input[type="text"]{
+    font-family: 'Courier New', monospace;
+    color: white;
+    background-color: rgb(32, 32, 38);
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 3px;
+}
+
+input[type="number"]{
+    font-family: 'Courier New', monospace;
+    color: white;
+    background-color: rgb(32, 32, 38);
+    border-radius: 50px;
+    text-align: center;
+}
+
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+textarea{
+    font-family: 'Courier New', monospace;
+    color: white;
+    background-color: rgb(32, 32, 38);
+    border: none;
+    border-radius: 3px;
+}
+
+img{
+    width: 100%;
+}
+
+p{
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    color: azure;
+    margin: 0;
+    white-space: nowrap;
+}
+
+h1{
+    font-family: 'Andale Mono', monospace;
+    font-size: 18;
+    color: azure;
+    white-space: nowrap;
+    text-align: center;
+    
+}
+
+h2{
+    font-family: 'Courier New', monospace;
+    font-size: 18;
+    color: azure;
+    white-space: nowrap;
+    text-align: center;
+    
+}
+
+h3{
+    font-family: 'Andale Mono', monospace;
+    font-size: 18;
+    color: azure;
+    white-space: nowrap;
+    text-align: center;
+    
+}
+
+
+.inicio{
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    width: 99%;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.inicio div{
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.inicio p{
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: azure;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.inicio input{
+    flex: 1;
+    min-width: 0;
+    border:0;
+    font-size: 18px;
+}
+
+
+
+
+.atributos{
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    max-width: 100%;
+    gap: 50px;
+    border: 2px solid rgba(136, 136, 136, 0.808);
+    border-radius: 10px;
+    padding: 7px;
+    text-align: center;
+}
+
+.atributos div{
+    border: 0px solid black;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.armor{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.check{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0px;
+}
+
+.atributos p{
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: azure;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.atributos input{
+    max-width: 30px;
+    min-width: 30px;
+    font-size: 20px;
+    border: 0;
+}
+
+.nivel{
+    max-width: 6%;
+}
+
+
+.main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 0px solid black;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.esqdir{
+    border: 0px solid black;
+    padding: 5px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.esqdir input{
+    flex: 1;
+    min-width: 0;
+    max-width: 100px;
+    border:0;
+}
+
+
+
+
+.dano{
+    display:flex;
+    flex-direction: row;
+    text-align: center;
+    
+}
+
+
+.checkesp{
+    display: flex;
+    gap: 2px;
+}
+
+.checkesp input{
+    width: 20px;
+    height: 30px;
+   
+}
