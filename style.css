@@ -3,10 +3,31 @@ body{
 }
 
 input[type="checkbox"] {
-  accent-color: rgb(200, 170, 90);
+  appearance: none;
+  -webkit-appearance: none;
+
   width: 15px;
   height: 15px;
+
+  background-color: rgb(30, 33, 40); /* levemente mais claro */
+  border: 1.5px solid rgb(90, 90, 90);
+  border-radius: 4px;
+
+  cursor: pointer;
+  vertical-align: middle;
+
+  transition: background-color 0.2s, border-color 0.2s;
 }
+
+input[type="checkbox"]:hover {
+  border-color: rgb(140, 140, 140);
+}
+
+input[type="checkbox"]:checked {
+  background-color: rgb(200, 170, 90);
+  border-color: rgb(200, 170, 90);
+}
+
 
 input[type="text"]{
     font-family: 'Courier New', monospace;
@@ -15,6 +36,7 @@ input[type="text"]{
     border-radius: 3px;
     font-size: 16px;
     padding: 3px;
+    margin-bottom: 3px;
 }
 
 input[type="number"]{
@@ -76,6 +98,34 @@ h3{
     
 }
 
+button {
+  background: transparent;
+  color: #ffffff;
+
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s,
+    color 0.25s,
+    transform 0.12s,
+    box-shadow 0.25s;
+}
+
+button:hover {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+}
+
+button:active {
+  transform: scale(0.96);
+}
 
 .inicio{
     display: flex;
@@ -153,11 +203,15 @@ h3{
     white-space: nowrap;
 }
 
-.atributos input{
+.atributos input[type="number"]{
     max-width: 30px;
     min-width: 30px;
     font-size: 20px;
-    border: 0;
+    
+}
+
+.atributos input[type="checkbox"]{
+    border:0;
 }
 
 .nivel{
@@ -195,17 +249,19 @@ h3{
     display:flex;
     flex-direction: row;
     text-align: center;
-    
+    justify-content:space-around;
 }
 
 
 .checkesp{
     display: flex;
     gap: 2px;
+    justify-content: center;
 }
 
 .checkesp input{
     width: 20px;
     height: 30px;
+    
    
 }

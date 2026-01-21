@@ -27,8 +27,8 @@
         </div>
 
         <div>
-            <p>HERANÇA:  </p>
-            <input type="text" placeholder="Herança" data-save="herancachar">
+            <p>ORIGEM:  </p>
+            <input type="text" placeholder="Origem" data-save="herancachar">
         </div>
 
         <div>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="nivel">
-            <p>LEVEL:  </p>
+            <p>NIVEL:  </p>
             <input type="number" data-save="levelchar">
         </div>
     </div>
@@ -122,7 +122,7 @@
                 <h2>SAÚDE</h2> <hr>
 
                 <p style="text-align: center;">VIDA MÁXIMA:
-                    <input type="number" data-save="vidamax">
+                    <input type="number" data-save="vidamax" style="width: 30px; font-size: 20px;">
                     <input type="checkbox" data-save="vidacheck1">
                     <input type="checkbox" data-save="vidacheck2">
                     <input type="checkbox" data-save="vidacheck3">
@@ -140,7 +140,7 @@
             </br>
 
             <p style="text-align: center;">STRESS MÁXIMO:
-                    <input type="number" data-save="stressmax">
+                    <input type="number" data-save="stressmax" style="width: 30px; font-size: 20px;">
                     <input type="checkbox" data-save="stresscheck1">
                     <input type="checkbox" data-save="stresscheck2">
                     <input type="checkbox" data-save="stresscheck3">
@@ -159,16 +159,16 @@
                 
                 <div class="dano">
                         
-                            <p style="max-width: 30%;">MENOR
-                            <input type="number" data-save="danomenor" style="max-width: 15%;"> </p>
+                            <p>MENOR
+                            <input type="number" data-save="danomenor" style="width: 30px; font-size: 20px;"> </p>
                         
                         
-                            <p style="max-width: 30%;">MAIOR
-                            <input type="number" data-save="danomaior" style="max-width: 15%;"> </p>
+                            <p>MAIOR
+                            <input type="number" data-save="danomaior" style="width: 30px; font-size: 20px;"> </p>
                         
                         
-                            <p style="max-width: 30%;">SEVERO
-                            <input type="number" data-save="danosevero" style="max-width: 15%;"> </p>
+                            <p>SEVERO
+                            <input type="number" data-save="danosevero" style="width: 30px; font-size: 20px;"> </p>
                         
                 </div>
             </div>
@@ -193,7 +193,7 @@
 
             <br>
             
-            <textarea placeholder="Hope Feature" data-save="recursoesperanca" style="min-height: 50px; min-width: 100%; max-width: fit-content;"></textarea>
+            <textarea placeholder="Aspecto de Esperança" data-save="recursoesperanca" style="min-height: 50px; min-width: 100%; max-width: fit-content;"></textarea>
 
             </div>
 
@@ -260,14 +260,12 @@
             <br>
 
             <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px;text-align: center;">
-                <h2>CLASS FEATURE</h2> <hr>
+                <h2>ASPECTO DE CLASSE</h2> <hr>
                 
                 <textarea data-save="recursoclasse" style="min-height: 60px; min-width: 100%; max-width:fit-content;"></textarea>
             </div>
 
-            <button id="exportar">EXPORTAR</button>
-            <button id="importar">IMPORTAR</button>
-            <input type="file" id="fileInput" accept=".json" hidden>
+            
 
         </div>
 
@@ -383,8 +381,15 @@
         <div>
             
         </div>
-
     </div>
+
+        <div style="display:flex; justify-content: center; gap:10px">
+
+            <button id="exportar">EXPORTAR</button>
+            <button id="importar">IMPORTAR</button>
+            <input type="file" id="fileInput" accept=".json" hidden>
+
+        </div>
 
 
     <script>
