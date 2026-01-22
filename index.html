@@ -626,12 +626,12 @@ for (let i = 1; i <= totalDivs; i++) {
 
     // DOMÍNIO + GASTO
     const linhaElemento = document.createElement("div");
-    linhaElemento.classList.add("linha-dominio");
+    linhaElemento.classList.add("linha-elemento");
 
     const elementoInput = document.createElement("input");
     elementoInput.type = "text";
-    elementoInput.placeholder = "DOMÍNIO";
-    elementoInput.setAttribute("data-save", `dominio-${i}`);
+    elementoInput.placeholder = "DOMINIO";
+    elementoInput.setAttribute("data-save", `elemento-${i}`);
 
     const energiaInput = document.createElement("input");
     energiaInput.type = "number";
