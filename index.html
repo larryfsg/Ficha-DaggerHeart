@@ -106,8 +106,13 @@
         </div>
 
         <div class="atributo">
-            <p>ADICIONAR VANTAGEM</p>
+            <p>VANTAGEM</p>
             <input type="checkbox" id="vantagem" data-save="vantagem">
+        </div>
+
+        <div class="atributo">
+            <p>DESVANTAGEM</p>
+            <input type="checkbox" id="desvantagem" data-save="desvantagem">
         </div>
 
     </div>
@@ -194,7 +199,8 @@
 
             <br>
             
-            <textarea placeholder="Aspecto de Esperança" data-save="recursoesperanca" style="min-height: 75px; min-width: 100%; max-width: fit-content;"></textarea>
+            <textarea placeholder="Aspecto de Esperança" data-save="recursoesperanca"
+            style="min-height: 100px; min-width: 100%; max-width: fit-content;"></textarea>
 
             </div>
 
@@ -263,7 +269,7 @@
             <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px;text-align: center;">
                 <h2>ASPECTO DE CLASSE</h2> <hr>
                 
-                <textarea data-save="recursoclasse" style="min-height: 145px; min-width: 100%; max-width:fit-content;"></textarea>
+                <textarea data-save="recursoclasse" style="min-height: 228px; min-width: 100%; max-width:fit-content;"></textarea>
             </div>
 
             
@@ -297,7 +303,8 @@
                     <p>PRIMÁRIA</p>
                     <input type="text" data-save="nomearma1" placeholder="Nome" style="max-width: 400px;">
                     <input type="text" data-save="alcancearma1" placeholder="Alcance">
-                    <input type="text" data-save="dadoarma1" placeholder="Dado e Tipo">
+                    <input type="text" id="inputArma1" data-save="dadoarma1" placeholder="Dado e Tipo">
+                    <button onclick="rolarArma(1)" id="rolararma1" style="transform: scale(0.8);">ROLAR</button>
                     <br>
                     <br>
                     <textarea data-save="recursoarma1" style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
@@ -312,7 +319,8 @@
                     <p>SECUNDÁRIA</p>
                     <input type="text" data-save="nomearma2" placeholder="Nome" style="max-width: 400px;">
                     <input type="text" data-save="alcancearma2" placeholder="Alcance">
-                    <input type="text" data-save="dadoarma2" placeholder="Dado e Tipo">
+                    <input type="text" id="inputArma2" data-save="dadoarma2" placeholder="Dado e Tipo">
+                    <button onclick="rolarArma(2)" id="rolararma2" style="transform: scale(0.8);">ROLAR</button>
                     <br>
                     <br>
                     <textarea data-save="recursoarma2" style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
@@ -354,6 +362,9 @@
                     <input type="text" data-save="alcancearmainv1" placeholder="Alcance">
                     <input type="text" data-save="dadoarmainv1" placeholder="Dado e Tipo">
                     <br>
+                    <button style="transform: scale(0.7);" onclick="trocarArma(1, 1)">PRIMÁRIA</button>
+                    <button style="transform: scale(0.7);" onclick="trocarArma(1, 2)">SECUNDÁRIA</button>
+                    <br>
                     <br>
                     <textarea data-save="recursoarmainv1" style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
 
@@ -368,6 +379,9 @@
                     <input type="text" data-save="nomearmainv2" placeholder="Nome" style="max-width: 400px;">
                     <input type="text" data-save="alcancearmainv2" placeholder="Alcance">
                     <input type="text" data-save="dadoarmainv2" placeholder="Dado e Tipo">
+                    <br>
+                    <button style="transform: scale(0.7);" onclick="trocarArma(2, 1)">PRIMÁRIA</button>
+                    <button style="transform: scale(0.7);" onclick="trocarArma(2, 2)">SECUNDÁRIA</button>
                     <br>
                     <br>
                     <textarea data-save="recursoarmainv2" style="min-width: 99%; max-width: 99%; min-height: 45px;"></textarea>
@@ -384,6 +398,23 @@
         </div>
     </div>
 
+
+        <h2>CARTAS 
+            <input type="number" id="quantidade" data-save="cartas" min="0" max="30" value="0" placeholder="0"
+                style="height: 25px; font-size: 20px;">
+        </h2>
+        
+
+        <div id="containerDivs"></div>
+
+
+
+
+
+
+
+
+        <BR>
         <div style="display:flex; justify-content: center; gap:10px">
 
             <button id="exportar">EXPORTAR</button>
@@ -407,136 +438,246 @@
 
 
 
-    <script>
+<script>
 
-        function rolardados(atr) {
+// FUNÇÕES DE ROLAGEM DE DADOS
+  
+function rolarD4()   { return Math.floor(Math.random() * 4) + 1; }
+function rolarD6()   { return Math.floor(Math.random() * 6) + 1; }
+function rolarD8()   { return Math.floor(Math.random() * 8) + 1; }
+function rolarD10()  { return Math.floor(Math.random() * 10) + 1; }
+function rolarD12()  { return Math.floor(Math.random() * 12) + 1; }
 
-            const bonus = parseInt(document.getElementById(atr).value) || 0;
+// Rola dados de atributos com vantagem/desvantagem e bônus
+function rolardados(atr) {
+    const bonus = parseInt(document.getElementById(atr).value) || 0;
+    const vant = document.getElementById("vantagem");
+    const desvant = document.getElementById("desvantagem");
 
-            const vant = document.getElementById("vantagem");
+    let dadomenos = desvant.checked ? rolarD6() : 0;
+    let dadoextra = vant.checked ? rolarD6() : 0;
 
-            let dadoextra = 0;
+    const hope = rolarD12();
+    const fear = rolarD12();
+    const result = hope + fear + bonus + dadoextra - dadomenos;
 
-            if(vant.checked){
-                dadoextra = rolarD6();
-            }
+    const titulo = atr.toUpperCase() + "<br><br>";
+    let mensagem = `${result} | `;
 
-            const hope = rolarD12();
-            const fear = rolarD12();
-            const result = hope + fear + bonus + dadoextra;
+    if (hope === fear) mensagem += "CRÍTICO!<br><br>";
+    else if (hope > fear) mensagem += "ESPERANÇA<br><br>";
+    else mensagem += "MEDO<br><br>";
 
-            const titulo = atr.toUpperCase() + "<br><br>";
+    mensagem += `Hope: ${hope} | Fear: ${fear}`;
+    if (dadoextra) mensagem += ` | Vantagem: ${dadoextra}`;
+    else if (dadomenos) mensagem += ` | Desvantagem: ${dadomenos}`;
 
-            let mensagem = `${result} | `;
+    abrirPopup(titulo, mensagem);
+}
 
-            if (hope === fear) {
-                mensagem += "CRÍTICO!<br><br>";
-            } else if (hope > fear) {
-                mensagem += "ESPERANÇA<br><br>";
-            } else {
-                mensagem += "MEDO<br><br>";
-            }
+// Rola qualquer dado com formato NdX+Y
+function rolarDadosString(texto) {
+    const regex = /^(\d+)d(\d+)(\+(\d+))?$/i;
+    const match = texto.match(regex);
+    if (!match) {
+        alert("Formato inválido! Use XdY+Z (ex: 3d6+2)");
+        return null;
+    }
 
-            mensagem += `Hope: ${hope} | Fear: ${fear}`;
-            if(dadoextra != 0){
-                mensagem += ` | Vantagem: ${dadoextra}`
-            }
+    const quantidade = parseInt(match[1]);
+    const faces = parseInt(match[2]);
+    const bonus = match[4] ? parseInt(match[4]) : 0;
 
-            abrirPopup(titulo, mensagem);
+    let total = 0, resultados = [];
+
+    for (let i = 0; i < quantidade; i++) {
+        let dado;
+        switch(faces) {
+            case 4: dado = rolarD4(); break;
+            case 6: dado = rolarD6(); break;
+            case 8: dado = rolarD8(); break;
+            case 10: dado = rolarD10(); break;
+            case 12: dado = rolarD12(); break;
+            default:
+                alert("Número de faces inválido! Use 4,6,8,10 ou 12.");
+                return null;
         }
+        resultados.push(dado);
+        total += dado;
+    }
 
+    total += bonus;
+    return { total, resultados, bonus };
+}
 
-        function rolarD12() {
-            return Math.floor(Math.random() * 12) + 1;
-        }
+// Rola dano da arma
+function rolarArma(numArma) {
+    const inputId = numArma === 1 ? "inputArma1" : "inputArma2";
+    const texto = document.getElementById(inputId).value;
 
-        function rolarD6() {
-            return Math.floor(Math.random() * 6) + 1;
-        }
+    const resultado = rolarDadosString(texto);
+    if (!resultado) return;
 
+    const titulo = `Arma ${numArma}<br>`;
+    let mensagem = `Dados: ${resultado.resultados.join(", ")}<br>`;
+    if (resultado.bonus) mensagem += `Bonus: ${resultado.bonus}<br>`;
+    mensagem += `<br>Total: ${resultado.total}`;
 
-
-        function abrirPopup(titulo, texto) {
-            document.getElementById("popupTitulo").innerHTML = titulo;
-            document.getElementById("popupTexto").innerHTML = texto;
-            document.getElementById("popupOverlay").classList.add("ativo");
-        }
-
-        function fecharPopup() {
-            document.getElementById("popupOverlay").classList.remove("ativo");
-        }
-
-
-
-
-
+    abrirPopup(titulo, mensagem);
+}
 
 
 
-        function coletarDados() {
-            const dados = {};
+//  Troca Arma do inventário com Arma da mão
 
-            document.querySelectorAll("[data-save]").forEach(el => {
-                const chave = el.dataset.save;
 
-                if (el.type === "checkbox") {
-                    dados[chave] = el.checked; // boolean
-                } else if (el.type === "number") {
-                    dados[chave] = Number(el.value); // number
-                } else {
-                    dados[chave] = el.value; // text e textarea
-                }
-            });
+function trocarArma(invNum, maoNum) {
+    const campos = ["nome", "alcance", "dado", "recurso"];
 
-            return dados;
-        }
+    campos.forEach(campo => {
+        const inv = document.querySelector(`[data-save="${campo}armainv${invNum}"]`);
+        const mao = document.querySelector(`[data-save="${campo}arma${maoNum}"]`);
 
-        document.getElementById("exportar").addEventListener("click", () => {
-            const dados = coletarDados();
+        if (!inv || !mao) return;
 
-            const json = JSON.stringify(dados, null, 2);
-            const blob = new Blob([json], { type: "application/json" });
-
-            const a = document.createElement("a");
-            a.href = URL.createObjectURL(blob);
-            a.download = "ficha.json";
-            a.click();
-        });
-
-        document.getElementById("importar").addEventListener("click", () => {
-            document.getElementById("fileInput").click();
-        });
-
-        document.getElementById("fileInput").addEventListener("change", e => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-
-            reader.onload = () => {
-                const dados = JSON.parse(reader.result);
-                aplicarDados(dados);
-            };
-
-            reader.readAsText(file);
-        });
-
-        function aplicarDados(dados) {
-            document.querySelectorAll("[data-save]").forEach(el => {
-            const chave = el.dataset.save;
-                if (!(chave in dados)) return;
-
-                if (el.type === "checkbox") {
-                    el.checked = dados[chave];
-                } else {
-                    el.value = dados[chave];
-                }
-            });
-        }
+        const temp = inv.value;
+        inv.value = mao.value;
+        mao.value = temp;
+    });
+}
 
 
 
-    </script>
 
+//   POPUP
+
+function abrirPopup(titulo, texto) {
+    document.getElementById("popupTitulo").innerHTML = titulo;
+    document.getElementById("popupTexto").innerHTML = texto;
+    document.getElementById("popupOverlay").classList.add("ativo");
+}
+
+function fecharPopup() {
+    document.getElementById("popupOverlay").classList.remove("ativo");
+}
+
+
+// Coleta e aplica os dados do usuário
+
+function coletarDados() {
+    const dados = {};
+    document.querySelectorAll("[data-save]").forEach(el => {
+        const chave = el.dataset.save;
+        if (el.type === "checkbox") dados[chave] = el.checked;
+        else if (el.type === "number") dados[chave] = Number(el.value);
+        else dados[chave] = el.value;
+    });
+    return dados;
+}
+
+function aplicarDados(dados) {
+    document.querySelectorAll("[data-save]").forEach(el => {
+        const chave = el.dataset.save;
+        if (!(chave in dados)) return;
+        if (el.type === "checkbox") el.checked = dados[chave];
+        else el.value = dados[chave];
+    });
+
+    atualizarDivsVisiveis(); 
+}
+
+
+// Exporta e Importa os dados do usuário como arquivo
+
+document.getElementById("exportar").addEventListener("click", () => {
+    const dados = coletarDados();
+    const blob = new Blob([JSON.stringify(dados, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "ficha.json";
+    a.click();
+});
+
+document.getElementById("importar").addEventListener("click", () => {
+    document.getElementById("fileInput").click();
+});
+
+document.getElementById("fileInput").addEventListener("change", e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+        const dados = JSON.parse(reader.result);
+        aplicarDados(dados);
+    };
+    reader.readAsText(file);
+});
+
+
+// Cria divs de cartas dinamicamente
+
+const container = document.getElementById("containerDivs");
+const totalDivs = 30;
+
+
+for (let i = 1; i <= totalDivs; i++) {
+    const div = document.createElement("div");
+    div.classList.add("div-item");
+
+    // ELEMENTO + GASTO
+    const linhaElemento = document.createElement("div");
+    linhaElemento.classList.add("linha-elemento");
+
+    const elementoInput = document.createElement("input");
+    elementoInput.type = "text";
+    elementoInput.placeholder = "ELEMENTO";
+    elementoInput.setAttribute("data-save", `elemento-${i}`);
+
+    const energiaInput = document.createElement("input");
+    energiaInput.type = "number";
+    energiaInput.placeholder = "GASTO";
+    energiaInput.setAttribute("data-save", `energia-${i}`);
+
+    linhaElemento.appendChild(elementoInput);
+    linhaElemento.appendChild(energiaInput);
+    div.appendChild(linhaElemento);
+
+    // TIPO
+    const tipoInput = document.createElement("input");
+    tipoInput.type = "text";
+    tipoInput.placeholder = "TIPO";
+    tipoInput.setAttribute("data-save", `tipo-${i}`);
+    div.appendChild(tipoInput);
+
+    // NOME
+    const nomeInput = document.createElement("input");
+    nomeInput.type = "text";
+    nomeInput.placeholder = "NOME";
+    nomeInput.setAttribute("data-save", `nome-${i}`);
+    div.appendChild(nomeInput);
+
+    // DESCRIÇÃO
+    const descTextarea = document.createElement("textarea");
+    descTextarea.placeholder = "DESCRIÇÃO";
+    descTextarea.setAttribute("data-save", `descricao-${i}`);
+    div.appendChild(descTextarea);
+
+    container.appendChild(div);
+}
+
+// Mostra as cartas quando muda a quantidade
+document.getElementById("quantidade").addEventListener("input", atualizarDivsVisiveis);
+
+function atualizarDivsVisiveis() {
+    const input = document.getElementById("quantidade");
+    const valor = parseInt(input.value) || 0;
+    const divs = container.children;
+
+    for (let i = 0; i < totalDivs; i++) {
+        divs[i].style.display = i < valor ? "block" : "none";
+    }
+}
+
+</script>
 </body>
 </html>
