@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha DaggerHeart</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 
@@ -18,22 +18,22 @@
     <div class="inicio">
         <div>
             <p>NOME:  </p>
-            <input type="text" placeholder="Nome" data-save="nomechar">
+            <input type="text" data-save="nomechar">
         </div>
 
         <div>
             <p>PRONOMES:  </p>
-            <input type="text" placeholder="Pronomes" data-save="pronomechar">
+            <input type="text" data-save="pronomechar" style="max-width: 50px;">
         </div>
 
         <div>
             <p>ORIGEM:  </p>
-            <input type="text" placeholder="Origem" data-save="herancachar">
+            <input type="text" data-save="herancachar">
         </div>
 
         <div>
             <p>SUBCLASSES:  </p>
-            <input type="text" placeholder="Subclasses" data-save="subclassechar">
+            <input type="text" data-save="subclassechar" style="width: 340px;">
         </div>
 
         <div class="nivel">
@@ -75,34 +75,39 @@
 
         
 
-        <div>
-            <p>AGI  </p>
-            <input type="number" placeholder="0" data-save="agi">
+        <div class="atributo">
+            <button onclick="rolardados('agilidade')">AGI</button>
+            <input type="number" id="agilidade" placeholder="0" data-save="agi">
         </div>
 
-        <div>
-            <p>FOR  </p>
-            <input type="number" placeholder="0" data-save="for">
+        <div class="atributo">
+            <button onclick="rolardados('forca')">FOR</button>
+            <input type="number" id="forca" placeholder="0" data-save="for">
         </div>
 
-        <div>
-            <p>FIN  </p>
-            <input type="number" placeholder="0" data-save="fin">
+        <div class="atributo">
+            <button onclick="rolardados('destreza')">DEX</button>
+            <input type="number" id="destreza" placeholder="0" data-save="fin">
         </div>
 
-        <div>
-            <p>INS  </p>
-            <input type="number" placeholder="0" data-save="ins">
+        <div class="atributo">
+            <button onclick="rolardados('instinto')">INS</button>
+            <input type="number" id="instinto" placeholder="0" data-save="ins">
         </div>
 
-        <div>
-            <p>PRE  </p>
-            <input type="number" placeholder="0" data-save="pre">
+        <div class="atributo">
+            <button onclick="rolardados('presenca')">PRE</button>
+            <input type="number" id="presenca" placeholder="0" data-save="pre">
         </div>
 
-        <div>
-            <p>CON  </p>
-            <input type="number" placeholder="0" data-save="con">
+        <div class="atributo">
+            <button onclick="rolardados('sabedoria')">SAB</button>
+            <input type="number" id="sabedoria" placeholder="0" data-save="con">
+        </div>
+
+        <div class="atributo">
+            <p>ADICIONAR VANTAGEM</p>
+            <input type="checkbox" id="vantagem" data-save="vantagem">
         </div>
 
     </div>
@@ -159,10 +164,6 @@
                 
                 <div class="dano">
                         
-                            <p>MENOR
-                            <input type="number" data-save="danomenor" style="width: 30px; font-size: 20px;"> </p>
-                        
-                        
                             <p>MAIOR
                             <input type="number" data-save="danomaior" style="width: 30px; font-size: 20px;"> </p>
                         
@@ -193,7 +194,7 @@
 
             <br>
             
-            <textarea placeholder="Aspecto de Esperança" data-save="recursoesperanca" style="min-height: 50px; min-width: 100%; max-width: fit-content;"></textarea>
+            <textarea placeholder="Aspecto de Esperança" data-save="recursoesperanca" style="min-height: 75px; min-width: 100%; max-width: fit-content;"></textarea>
 
             </div>
 
@@ -262,7 +263,7 @@
             <div style="border: 2px solid rgba(136, 136, 136, 0.808); border-radius: 10px; padding: 7px;text-align: center;">
                 <h2>ASPECTO DE CLASSE</h2> <hr>
                 
-                <textarea data-save="recursoclasse" style="min-height: 60px; min-width: 100%; max-width:fit-content;"></textarea>
+                <textarea data-save="recursoclasse" style="min-height: 145px; min-width: 100%; max-width:fit-content;"></textarea>
             </div>
 
             
@@ -392,7 +393,85 @@
         </div>
 
 
+        <div id="popupOverlay" class="popup-overlay">
+            <div class="popup">
+                <h2 id="popupTitulo"></h2>
+                <p id="popupTexto"></p>
+
+                <button onclick="fecharPopup()">Fechar</button>
+            </div>
+        </div>
+
+
+
+
+
+
     <script>
+
+        function rolardados(atr) {
+
+            const bonus = parseInt(document.getElementById(atr).value) || 0;
+
+            const vant = document.getElementById("vantagem");
+
+            let dadoextra = 0;
+
+            if(vant.checked){
+                dadoextra = rolarD6();
+            }
+
+            const hope = rolarD12();
+            const fear = rolarD12();
+            const result = hope + fear + bonus + dadoextra;
+
+            const titulo = atr.toUpperCase() + "<br><br>";
+
+            let mensagem = `${result} | `;
+
+            if (hope === fear) {
+                mensagem += "CRÍTICO!<br><br>";
+            } else if (hope > fear) {
+                mensagem += "ESPERANÇA<br><br>";
+            } else {
+                mensagem += "MEDO<br><br>";
+            }
+
+            mensagem += `Hope: ${hope} | Fear: ${fear}`;
+            if(dadoextra != 0){
+                mensagem += ` | Vantagem: ${dadoextra}`
+            }
+
+            abrirPopup(titulo, mensagem);
+        }
+
+
+        function rolarD12() {
+            return Math.floor(Math.random() * 12) + 1;
+        }
+
+        function rolarD6() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+
+
+        function abrirPopup(titulo, texto) {
+            document.getElementById("popupTitulo").innerHTML = titulo;
+            document.getElementById("popupTexto").innerHTML = texto;
+            document.getElementById("popupOverlay").classList.add("ativo");
+        }
+
+        function fecharPopup() {
+            document.getElementById("popupOverlay").classList.remove("ativo");
+        }
+
+
+
+
+
+
+
 
         function coletarDados() {
             const dados = {};
