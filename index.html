@@ -301,9 +301,9 @@
                 
                 <div>
                     <p>PRIMÁRIA</p>
-                    <input type="text" data-save="nomearma1" placeholder="Nome" style="max-width: 400px;">
-                    <input type="text" data-save="alcancearma1" placeholder="Alcance">
-                    <input type="text" id="inputArma1" data-save="dadoarma1" placeholder="Dado e Tipo">
+                    <input type="text" data-save="nomearma1" placeholder="Nome/Atributo" style="max-width: 400px;">
+                    <input type="text" data-save="alcancearma1" placeholder="Alcance/Tipo">
+                    <input type="text" id="inputArma1" data-save="dadoarma1" placeholder="Dano">
                     <button onclick="rolarArma(1)" id="rolararma1" style="transform: scale(0.8);">ROLAR</button>
                     <br>
                     <br>
@@ -317,9 +317,9 @@
 
                 <div>
                     <p>SECUNDÁRIA</p>
-                    <input type="text" data-save="nomearma2" placeholder="Nome" style="max-width: 400px;">
-                    <input type="text" data-save="alcancearma2" placeholder="Alcance">
-                    <input type="text" id="inputArma2" data-save="dadoarma2" placeholder="Dado e Tipo">
+                    <input type="text" data-save="nomearma2" placeholder="Nome/Atributo" style="max-width: 400px;">
+                    <input type="text" data-save="alcancearma2" placeholder="Alcance/Tipo">
+                    <input type="text" id="inputArma2" data-save="dadoarma2" placeholder="Dano">
                     <button onclick="rolarArma(2)" id="rolararma2" style="transform: scale(0.8);">ROLAR</button>
                     <br>
                     <br>
@@ -358,9 +358,9 @@
                 <div style="border: 2px solid rgba(136, 136, 136, 0.808);
             border-radius: 10px; padding: 7px; text-align: center;">
                     <p>ARMA DO INVENTÁRIO</p>
-                    <input type="text" data-save="nomearmainv1" placeholder="Nome" style="max-width: 400px;">
-                    <input type="text" data-save="alcancearmainv1" placeholder="Alcance">
-                    <input type="text" data-save="dadoarmainv1" placeholder="Dado e Tipo">
+                    <input type="text" data-save="nomearmainv1" placeholder="Nome/Atributo" style="max-width: 400px;">
+                    <input type="text" data-save="alcancearmainv1" placeholder="Alcance/Tipo">
+                    <input type="text" data-save="dadoarmainv1" placeholder="Dano">
                     <br>
                     <button style="transform: scale(0.7);" onclick="trocarArma(1, 1)">PRIMÁRIA</button>
                     <button style="transform: scale(0.7);" onclick="trocarArma(1, 2)">SECUNDÁRIA</button>
@@ -376,9 +376,9 @@
                 <div style="border: 2px solid rgba(136, 136, 136, 0.808);
             border-radius: 10px; padding: 7px; text-align: center;">
                     <p>ARMA DO INVENTÁRIO</p>
-                    <input type="text" data-save="nomearmainv2" placeholder="Nome" style="max-width: 400px;">
-                    <input type="text" data-save="alcancearmainv2" placeholder="Alcance">
-                    <input type="text" data-save="dadoarmainv2" placeholder="Dado e Tipo">
+                    <input type="text" data-save="nomearmainv2" placeholder="Nome/Atributo" style="max-width: 400px;">
+                    <input type="text" data-save="alcancearmainv2" placeholder="Alcance/Tipo">
+                    <input type="text" data-save="dadoarmainv2" placeholder="Dano">
                     <br>
                     <button style="transform: scale(0.7);" onclick="trocarArma(2, 1)">PRIMÁRIA</button>
                     <button style="transform: scale(0.7);" onclick="trocarArma(2, 2)">SECUNDÁRIA</button>
@@ -620,14 +620,14 @@ const container = document.getElementById("containerDivs");
 const totalDivs = 30;
 
 
-for (let i = 1; i <= totalDivs; i++) {
+for (let i = 1; i <= totalDivs; i++) { 
     const div = document.createElement("div");
     div.classList.add("div-item");
 
     // DOMÍNIO + GASTO
     const linhaElemento = document.createElement("div");
     linhaElemento.classList.add("linha-elemento");
-
+''
     const elementoInput = document.createElement("input");
     elementoInput.type = "text";
     elementoInput.placeholder = "DOMINIO";
@@ -638,8 +638,13 @@ for (let i = 1; i <= totalDivs; i++) {
     energiaInput.placeholder = "GASTO";
     energiaInput.setAttribute("data-save", `energia-${i}`);
 
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.setAttribute("data-save", `ativo-${i}`);
+
     linhaElemento.appendChild(elementoInput);
     linhaElemento.appendChild(energiaInput);
+    linhaElemento.appendChild(checkbox);
     div.appendChild(linhaElemento);
 
     // TIPO
